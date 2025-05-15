@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduVision – Upload Notes</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f7ff;
+      display: flex;
+    }
+    .sidebar {
+      width: 80px;
+      background-color: #ddeeff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      gap: 25px;
+    }
+    .sidebar img {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+    .main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .upload-area {
+      border: 2px dashed #90c3e8;
+      padding: 60px;
+      text-align: center;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .upload-area p {
+      font-size: 18px;
+      color: #4a7eb1;
+    }
+    .upload-input {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="flashcards-icon.png" alt="Flashcards" title="Flashcards" />
+    <img src="quiz-icon.png" alt="Quiz" title="Quiz" />
+    <img src="mindmap-icon.png" alt="Mindmap" title="Mindmap" />
+    <img src="calendar-icon.png" alt="Planner" title="Spaced Repetition" />
+  </div>
+  <div class="main">
+    <div class="upload-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+      <p><strong>Upload your notes here</strong><br/>(PDF or Image)</p>
+      <input type="file" class="upload-input" accept=".pdf, image/*" />
+    </div>
+  </div>
+
+  <script>
+    function dropHandler(ev) {
+      ev.preventDefault();
+      if (ev.dataTransfer.items) {
+        [...ev.dataTransfer.items].forEach(item => {
+          if (item.kind === "file") {
+            const file = item.getAsFile();
+            console.log("Dropped file:", file.name);
+          }
+        });
+      }
+    }
+
+    function dragOverHandler(ev) {
+      ev.preventDefault();
+    }
+  </script>
+</body>
+</html>
