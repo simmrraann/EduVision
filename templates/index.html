@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduVision</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- tsparticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+
+  <!-- Particles Background -->
+  <div id="tsparticles"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">EduVision</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Upload</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Welcome to EduVision</h1>
+    <p><h3>Your Smart Learning Companion</h3></p>
+
+    <form action="/" method="post" enctype="multipart/form-data" class="upload-form">
+      <input type="file" name="file">
+      <input type="submit" value="Upload">
+    </form>
+
+    
+
+  <!-- Feature Cards -->
+  {% if output %}
+  <div class="features">
+    <div class="feature">
+      <h2>Flashcards</h2>
+      <ul>
+        {% for card in output['flashcards'] %}
+          <li>{{ card }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="feature">
+      <h2>MCQs</h2>
+      <ul>
+        {% for mcq in output['mcqs'] %}
+          <li>{{ mcq }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="feature">
+      <h2>Fill in the Blanks</h2>
+      <ul>
+        {% for blank in output['blanks'] %}
+          <li>{{ blank }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+
+  <div class="feature-container">
+    <!-- Flashcards -->
+    <div class="feature-box">
+      <img src="flashcards.png" alt="Flashcards">
+      <h3>Flashcards</h3>
+      <p>Revise faster with smart flashcards.</p>
+      <button onclick="testFeature('flashcards')">Test this</button>
+    </div>
+  
+    <!-- Mindmaps -->
+    <div class="feature-box">
+      <img src="mindmaps.png" alt="Mindmaps">
+      <h3>Mindmaps</h3>
+      <p>Visualize topics and their connections.</p>
+      <button onclick="testFeature('mindmaps')">Test this</button>
+    </div>
+  
+    <!-- Fill in the Blanks -->
+    <div class="feature-box">
+      <img src="fitb.png" alt="Fill in the Blanks">
+      <h3>F.I.B</h3>
+      <p>Practice fill-in-the-blank questions.</p>
+      <button onclick="testFeature('fitb')">Test this</button>
+    </div>
+  
+    <!-- Spaced Repetition -->
+    <div class="feature-box">
+      <img src="spaced.png" alt="Spaced Repetition">
+      <h3>Spaced Repetition</h3>
+      <p>Smart review scheduling system.</p>
+      <button onclick="testFeature('spaced')">Test this</button>
+    </div>
+  
+    <!-- MCQs -->
+    <div class="feature-box">
+      <img src="mcq.png" alt="MCQs">
+      <h3>MCQs</h3>
+      <p>Test yourself with multiple choice quizzes.</p>
+      <button onclick="testFeature('mcq')">Test this</button>
+    </div>
+  </div>
+  
+
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 EduVision. Made with 💡 for students. <a href="https://github.com/yourusername/eduvision" target="_blank">GitHub</a></p>
+  </footer>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
