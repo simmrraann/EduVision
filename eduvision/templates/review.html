@@ -1,0 +1,14 @@
+<h2>Flashcard Review</h2>
+
+<form method="POST">
+    <input type="hidden" name="card_id" value="{{ card[0] }}">
+    <p><strong>Q:</strong> {{ card[1] }}</p>
+    <p><strong>A:</strong> {{ card[2] }}</p>
+
+    <label>How well did you remember it?</label><br>
+    <button type="submit" name="quality" value="5">5 - Perfect</button>
+    <button type="submit" name="quality" value="4">4 - Correct with hesitation</button>
+    <button type="submit" name="quality" value="3">3 - Correct with effort</button>
+    <button type="submit" name="quality" value="2">2 - Incorrect but familiar</button>
+    <button type="submit" name="quality" value="1">1 - Don't remember</button>
+</form>
