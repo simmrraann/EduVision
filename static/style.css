@@ -39,13 +39,16 @@ body, html {
   /* Main Content */
   .main-content {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 50px;
   }
   .upload-form {
     margin-top: 60px;
+    
   }
   .button-group {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
   }
   .button-group button {
     padding: 10px 20px;
@@ -82,12 +85,13 @@ body, html {
     max-width: 1000px;
     margin: 40px auto;
     padding: 20px;
+    align-items: center;
   }
   
   .feature-box {
     background: #e3e6ff;
     border-radius: 10px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
     text-align: center;
     color: #2c3e50;
     padding: 20px;
@@ -95,7 +99,9 @@ body, html {
   }
   
   .feature-box:hover {
-    transform: scale(1.03);
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.4);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
   }
   
   .feature-box img {
@@ -135,6 +141,8 @@ body, html {
   .feature-container .feature-box:nth-child(4),
   .feature-container .feature-box:nth-child(5) {
     grid-column: span 1;
+    justify-content: center;
+    text-align: center;
   }
   
   /* Footer */

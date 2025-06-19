@@ -1,3 +1,4 @@
+from llm_engine import generate_output
 from dotenv import load_dotenv
 import os
 api_key = os.getenv("OPENAI_API_KEY")
@@ -40,6 +41,42 @@ def upload_page():
     return render_template("upload.html")
 
     return render_template("index.html", output=output)
+
+@app.route('/generate_flashcards', methods=['POST'])
+def flashcards():
+    data = request.json['text']
+    prompt = f"Create 5 flashcards (Q&A) from the following content:\n{data}"
+    result = generate_output(prompt)
+    return jsonify({'output': result})
+
+@app.route('/generate_mcqs', methods=['POST'])
+def mcqs():
+    data = request.json['text']
+    prompt = f"Generate 5 MCQs with 4 options each and correct answers:\n{data}"
+    result = generate_output(prompt)
+    return jsonify({'output': result})
+
+@app.route('/generate_fillups', methods=['POST'])
+def fill_in_blanks():
+    data = request.json['text']
+    prompt = f"Create 5 fill-in-the-blank questions from the following text:\n{data}"
+    result = generate_output(prompt)
+    return jsonify({'output': result})
+
+@app.route('/generate_mindmap', methods=['POST'])
+def mindmap():
+    data = request.json['text']
+    prompt = f"List main concepts and their subpoints from this content for mind mapping:\n{data}"
+    result = generate_output(prompt)
+    return jsonify({'output': result})
+
+@app.route('/generate_schedule', methods=['POST'])
+def schedule():
+    data = request.json['text']
+    prompt = f"Generate a 7-day spaced repetition study plan based on this content:\n{data}"
+    result = generate_output(prompt)
+    return jsonify({'output': result})
+
 
 if __name__ == "__main__":
     app.run(debug=True)
