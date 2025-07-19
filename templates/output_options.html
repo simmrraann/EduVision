@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your Learning Tools - MindMorph</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Animated Stars Background -->
+  <div class="stars-container">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    
+    <!-- Floating Comets -->
+    <div class="comet"></div>
+    <div class="comet"></div>
+    <div class="comet"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-brain"></i> MindMorph
+    </div>
+    <ul class="nav-links">
+      <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="/flashcards"><i class="fas fa-layer-group"></i> Flashcards</a></li>
+      <li><a href="/mcqs"><i class="fas fa-question-circle"></i> MCQs</a></li>
+      <li><a href="/fillintheblanks"><i class="fas fa-edit"></i> FIBs</a></li>
+      <li><a href="/clear-session"><i class="fas fa-refresh"></i> New Session</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1 class="page-title">Choose Your Learning Tools</h1>
+    <p style="text-align: center; color: #888; margin-bottom: 3rem; font-size: 1.2rem;">
+      Your document has been processed! Select the learning tools you'd like to explore:
+    </p>
+
+    <div class="output-options">
+      <!-- Flashcards -->
+      <a href="/flashcards" class="option-card">
+        <i class="fas fa-layer-group"></i>
+        <h3>Flashcards</h3>
+        <p>Revise faster with smart flashcards generated from your content. Perfect for memorization and quick review sessions.</p>
+      </a>
+    
+      <!-- MCQs -->
+      <a href="/mcqs" class="option-card">
+        <i class="fas fa-question-circle"></i>
+        <h3>Multiple Choice Questions</h3>
+        <p>Test your knowledge with AI-generated MCQs. Challenge yourself with interactive quizzes and track your progress.</p>
+      </a>
+    
+      <!-- Fill in the Blanks -->
+      <a href="/fillintheblanks" class="option-card">
+        <i class="fas fa-edit"></i>
+        <h3>Fill in the Blanks</h3>
+        <p>Practice active recall with contextual fill-in-the-blank exercises. Strengthen your understanding through completion tasks.</p>
+      </a>
+    
+      <!-- Mindmap -->
+      <a href="/mindmap" class="option-card">
+        <i class="fas fa-project-diagram"></i>
+        <h3>Mindmap</h3>
+        <p>Visualize topics and their connections with interactive mindmaps. See the big picture and understand relationships.</p>
+      </a>
+    
+      <!-- Summary -->
+      <a href="/summary" class="option-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>AI Summary</h3>
+        <p>Get intelligent summaries and key insights from your documents. Understand the main points quickly and efficiently.</p>
+      </a>
+    
+      <!-- Study Schedule -->
+      <a href="/schedule" class="option-card">
+        <i class="fas fa-calendar-alt"></i>
+        <h3>Study Schedule</h3>
+        <p>Optimize your learning with spaced repetition study plans. Follow scientifically-proven review intervals for better retention.</p>
+      </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Upload New Document
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MindMorph. Made with <i class="fas fa-heart"></i> for students. 
+      <a href="https://github.com/yourusername/mindmorph" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 

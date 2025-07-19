@@ -1,4 +1,4 @@
-rom llm_engine import generate_output
+from llm_engine import generate_output
 
 def generate_mcqs(text):
     prompt = f"Generate 5 multiple choice questions from the following text:\n{text}"

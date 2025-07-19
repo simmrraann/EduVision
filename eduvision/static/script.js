@@ -24,3 +24,22 @@ tsParticles.load("tsparticles", {
       }
     }
   });
+
+document.getElementById("flashcard-btn").addEventListener("click", () => {
+document.getElementById("flashcard-output").style.display = "block";
+});
+
+document.getElementById("mcq-btn").addEventListener("click", () => {
+document.getElementById("mcq-output").style.display = "block";
+});
+
+document.getElementById("mindmap-btn").addEventListener("click", () => {
+  document.getElementById("mondmap-output").style.display = "block";
+});
+
+document.getElementById("fill_in_the_blank-btn").addEventListener("click", () => {
+  document.getElementById("fill_in_the_blank-output").style.display = "block";
+});
+
+
+// Repeat for FIB, Mindmap, etc.

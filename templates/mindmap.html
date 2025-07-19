@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindmap - MindMorph</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Animated Stars Background -->
+  <div class="stars-container">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    
+    <!-- Floating Comets -->
+    <div class="comet"></div>
+    <div class="comet"></div>
+    <div class="comet"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-brain"></i> MindMorph
+    </div>
+    <ul class="nav-links">
+      <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="/flashcards"><i class="fas fa-layer-group"></i> Flashcards</a></li>
+      <li><a href="/mcqs"><i class="fas fa-question-circle"></i> MCQs</a></li>
+      <li><a href="/fillintheblanks"><i class="fas fa-edit"></i> FIBs</a></li>
+      <li><a href="/clear-session"><i class="fas fa-refresh"></i> New Session</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content-page">
+    <a href="/output-options" class="back-button">
+      <i class="fas fa-arrow-left"></i>
+      Back to Options
+    </a>
+
+    <h1 class="page-title">
+      <i class="fas fa-project-diagram"></i> Mindmap
+    </h1>
+
+    <div class="mindmap-container">
+      {% if mindmap %}
+        <div class="content-card">
+          <h3><i class="fas fa-sitemap"></i> Concept Map</h3>
+          <div class="mindmap-visual">
+            {% for main_topic, subtopics in mindmap.items() %}
+              <div class="mindmap-node main-node">
+                <h4>{{ main_topic }}</h4>
+                {% if subtopics is mapping %}
+                  {% for subtopic, details in subtopics.items() %}
+                    <div class="mindmap-node sub-node">
+                      <h5>{{ subtopic }}</h5>
+                      {% if details is sequence %}
+                        <ul>
+                          {% for detail in details %}
+                            <li>{{ detail }}</li>
+                          {% endfor %}
+                        </ul>
+                      {% else %}
+                        <p>{{ details }}</p>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                {% elif subtopics is sequence %}
+                  <ul>
+                    {% for subtopic in subtopics %}
+                      <li>{{ subtopic }}</li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <p>{{ subtopics }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% else %}
+        <div class="content-card">
+          <h3>No Mindmap Available</h3>
+          <p>Please upload a document first to generate a mindmap.</p>
+          <a href="/" class="back-button">
+            <i class="fas fa-upload"></i>
+            Upload Document
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/output-options" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Options
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MindMorph. Made with <i class="fas fa-heart"></i> for students. 
+      <a href="https://github.com/yourusername/mindmorph" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fill in the Blanks - MindMorph</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Animated Stars Background -->
+  <div class="stars-container">
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    
+    <!-- Floating Comets -->
+    <div class="comet"></div>
+    <div class="comet"></div>
+    <div class="comet"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fas fa-brain"></i> MindMorph
+    </div>
+    <ul class="nav-links">
+      <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="/flashcards"><i class="fas fa-layer-group"></i> Flashcards</a></li>
+      <li><a href="/mcqs"><i class="fas fa-question-circle"></i> MCQs</a></li>
+      <li><a href="/fillintheblanks"><i class="fas fa-edit"></i> FIBs</a></li>
+      <li><a href="/clear-session"><i class="fas fa-refresh"></i> New Session</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content-page">
+    <a href="/output-options" class="back-button">
+      <i class="fas fa-arrow-left"></i>
+      Back to Options
+    </a>
+
+    <h1 class="page-title">
+      <i class="fas fa-edit"></i> Fill in the Blanks
+    </h1>
+
+    <div class="fib-container">
+      {% if fill_in_blanks %}
+        {% for fib in fill_in_blanks %}
+          <div class="content-card fib-card">
+            <h3><i class="fas fa-pencil-alt"></i> Exercise {{ loop.index }}</h3>
+            
+            <div class="fib-sentence">
+              <p>{{ fib.sentence if fib.sentence else "Complete the sentence: _____" }}</p>
+              
+              <div class="fib-input-section" style="margin-top: 1rem;">
+                <input type="text" 
+                       class="fib-input" 
+                       placeholder="Type your answer here..."
+                       data-answer="{{ fib.answer if fib.answer else 'answer' }}"
+                       onkeyup="checkAnswer(this)">
+                <button class="check-btn" onclick="checkAnswer(this.previousElementSibling)">
+                  <i class="fas fa-check"></i> Check Answer
+                </button>
+              </div>
+              
+              <div class="fib-result" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px;">
+                <p class="result-text"></p>
+                <p class="correct-answer" style="color: #00fff7; font-weight: 600;"></p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="content-card">
+          <h3>No Fill in the Blanks Available</h3>
+          <p>Please upload a document first to generate fill-in-the-blank exercises.</p>
+          <a href="/" class="back-button">
+            <i class="fas fa-upload"></i>
+            Upload Document
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/output-options" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Options
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MindMorph. Made with <i class="fas fa-heart"></i> for students. 
+      <a href="https://github.com/yourusername/mindmorph" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  
+  <script>
+    function checkAnswer(input) {
+      const userAnswer = input.value.trim().toLowerCase();
+      const correctAnswer = input.dataset.answer.toLowerCase();
+      const card = input.closest('.fib-card');
+      const result = card.querySelector('.fib-result');
+      const resultText = card.querySelector('.result-text');
+      const correctAnswerText = card.querySelector('.correct-answer');
+      
+      if (userAnswer === correctAnswer) {
+        result.style.background = 'rgba(0, 255, 0, 0.1)';
+        result.style.border = '1px solid #00ff00';
+        resultText.innerHTML = '<i class="fas fa-check-circle"></i> Correct!';
+        resultText.style.color = '#00ff00';
+        input.style.borderColor = '#00ff00';
+        input.style.background = 'rgba(0, 255, 0, 0.1)';
+      } else if (userAnswer !== '') {
+        result.style.background = 'rgba(255, 0, 0, 0.1)';
+        result.style.border = '1px solid #ff0000';
+        resultText.innerHTML = '<i class="fas fa-times-circle"></i> Incorrect!';
+        resultText.style.color = '#ff0000';
+        correctAnswerText.innerHTML = `Correct answer: ${input.dataset.answer}`;
+        input.style.borderColor = '#ff0000';
+        input.style.background = 'rgba(255, 0, 0, 0.1)';
+      } else {
+        result.style.display = 'none';
+        input.style.borderColor = 'rgba(0, 255, 247, 0.3)';
+        input.style.background = 'rgba(0, 0, 0, 0.3)';
+        return;
+      }
+      
+      result.style.display = 'block';
+    }
+  </script>
+</body>
+</html> 
